@@ -48,10 +48,18 @@ public class CarController {
      * */
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            for (Car car : cars) {
-                car.move();
-                int x = (int) Math.round(car.getXPos());
-                int y = (int) Math.round(car.getYPos());
+            for (Vehicle vehicle : vehicles) {
+                double initialSpeed = vehicle.getCurrentSpeed();
+                if (hitWall(vehicle)){
+                    vehicle.stopEngine();
+                    vehicle.turnRight();
+                    vehicle.turnRight();
+                    vehicle.startEngine();
+                    vehicle.setCurrentSpeed(initialSpeed);
+                }
+                vehicle.move();
+                int x = (int) Math.round(vehicle.getXPos());
+                int y = (int) Math.round(vehicle.getYPos());
                 frame.drawPanel.moveit(x, y);
                 // repaint() calls the paintComponent method of the panel
                 frame.drawPanel.repaint();
