@@ -22,8 +22,9 @@ public class CarController {
     // The frame that represents this instance View of the MVC pattern
     CarView frame;
     // A list of cars, modify if needed
-    ArrayList<Car> cars = new ArrayList<>();
+    //ArrayList<Car> cars = new ArrayList<>();
     //ArrayList<Truck> trucks = new ArrayList<>();
+    ArrayList<Vehicle> vehicles = new ArrayList<>();
 
     //methods:
 
@@ -31,10 +32,15 @@ public class CarController {
         // Instance of this class
         CarController cc = new CarController();
 
-        cc.cars.add(new Volvo240());
-        //cc.cars.add(new Saab95(2, 125, Color.red,  4.8));
-        //cc.trucks.add(new Scania(2, 500, Color.blue, 25, false));
-        //cc.trucks.add(new CarTransporter(2, 500, Color.green, 20.0, false));
+        cc.vehicles.add(new Volvo240()); //cc.vehicles.add(new Volvo240(0,0));
+        cc.vehicles.add(new Saab95()); //cc.vehicles.add(new Saab95(0, 100));
+        cc.vehicles.add(new Scania()); //cc.vehicles.add(new Scania(0, 200));
+
+        //Satt in Saab95, Scania och deras respektive bilder med 100 pixlars
+        //avstand i Y-led fran varandra (alla avbildas ursprungligen med X=0).
+        //Koppla turbo-knapparna till Saaben och flakknapparna till Scania.
+        //Koppla "starta och stoppa alla bilar"-knapparna till bagge.
+        //Aven dessa bilar ska forhindras att aka utanfor rutan.
 
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
@@ -77,10 +83,29 @@ public class CarController {
     }
 
     void brake(int amount) {
-        double brake = -((double) amount) / 100;
-        for (Car car : cars
+        double brake = ((double) amount) / 100;
+        for (Vehicle vehicle : vehicles
         ) {
             vehicle.brake(brake);
         }
     }
+
+    boolean hitWall(Vehicle vehicle){
+        int screenWidth = frame.getWidth();
+        int screenHeight = 500; //för gröna boxen
+        double vehicleXPos = vehicle.getXPos();
+        double vehicleYPos = vehicle.getYPos();
+        return (vehicleXPos < 0 || vehicleXPos > screenWidth || vehicleYPos < 0 || vehicleYPos > screenHeight);
+       // return (car.getXPos() < 800 && car.getXPos() > 0 ||car.getYPos() <= 800 && car.getYPos() > 0);
+    }
+
+    void turboOn(Saab95 saab){
+       saab.setTurboOn();
+    }
+
+    void turboOff(Saab95 saab){
+        saab.setTurboOff();
+    }
+
+
 }
