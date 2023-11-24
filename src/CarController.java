@@ -56,7 +56,7 @@ public class CarController {
         public void actionPerformed(ActionEvent e) {
             for (Vehicle vehicle : vehicles) {
                 double initialSpeed = vehicle.getCurrentSpeed();
-                if (hitWall(vehicle)){
+                if ( hitWall(vehicle)){
                     vehicle.stopEngine();
                     vehicle.turnRight();
                     vehicle.turnRight();
@@ -91,7 +91,7 @@ public class CarController {
     }
 
     boolean hitWall(Vehicle vehicle){
-        int screenWidth = frame.getWidth();
+        int screenWidth = 700;
         int screenHeight = 500; //för gröna boxen
         double vehicleXPos = vehicle.getXPos();
         double vehicleYPos = vehicle.getYPos();
@@ -106,6 +106,9 @@ public class CarController {
     void turboOff(Saab95 saab){
         saab.setTurboOff();
     }
+
+
+
 
 
 }

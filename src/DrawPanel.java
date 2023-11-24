@@ -22,22 +22,11 @@ public class DrawPanel extends JPanel{
     Point saabPoint = new Point();
     Point scaniaPoint=new Point();
 
-    /*
-    public void addVehiclePosition(int x, int y, BufferedImage image) {
-        vehiclePositions.add(new Point(x, y));
-        vehicleImages.add(image);
-    }
-     */
-
-    // TODO: Make this genereal for all cars
-    void moveit(int x, int y){
-        volvoPoint.x = x;
-        volvoPoint.y = y;
-        saabPoint.x = x;
-        saabPoint.y = y+ 100;
-        scaniaPoint.x = x;
-        scaniaPoint.y =y+200;
-
+    public void moveit(int[] x, int[] y) {
+        for (int i = 0; i < vehiclePositions.size(); i++) {
+            vehiclePositions.get(i).x = x[i];
+            vehiclePositions.get(i).y = y[i]+i*100;
+        }
     }
 
     // Initializes the panel and reads the images

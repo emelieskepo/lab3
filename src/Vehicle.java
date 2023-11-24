@@ -14,7 +14,7 @@ public abstract class Vehicle implements Movable{
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.color = color;
-        this.position = new Position(0, 0, "NORTH");
+        this.position = new Position(0, 0, "EAST");
         this.size = size;
         stopEngine();
     }
