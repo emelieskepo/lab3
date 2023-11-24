@@ -10,17 +10,9 @@ import java.util.ArrayList;
 
 public class DrawPanel extends JPanel{
 
-    // Just a single image, TODO: Generalize
-    BufferedImage volvoImage;
-    BufferedImage saabImage;
-
-    BufferedImage scaniaImage;
     // To keep track of a singel cars position
-    //private ArrayList<Point> vehiclePositions = new ArrayList<>();
-    //private ArrayList<BufferedImage> vehicleImages = new ArrayList<>();
-    Point volvoPoint = new Point();
-    Point saabPoint = new Point();
-    Point scaniaPoint=new Point();
+    public ArrayList<Point> vehiclePositions = new ArrayList<>();
+    public ArrayList<BufferedImage> vehicleImages = new ArrayList<>();
 
     public void moveit(int[] x, int[] y) {
         for (int i = 0; i < vehiclePositions.size(); i++) {
@@ -42,15 +34,18 @@ public class DrawPanel extends JPanel{
 
             // Rememember to rightclick src New -> Package -> name: pics -> MOVE *.jpg to pics.
             // if you are starting in IntelliJ.
-            volvoImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Volvo240.jpg"));
-            saabImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Saab95.jpg"));
-            scaniaImage=ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Scania.jpg"));
+            vehicleImages.add(ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Volvo240.jpg")));
+            vehicleImages.add(ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Saab95.jpg")));
+            vehicleImages.add(ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Scania.jpg")));
 
         } catch (IOException ex)
         {
             ex.printStackTrace();
         }
 
+        for(int i = 0; i < vehicleImages.size(); i++) {
+            vehiclePositions.add(new Point(0, i * 100));
+        }
     }
 
     // This method is called each time the panel updates/refreshes/repaints itself
@@ -58,8 +53,8 @@ public class DrawPanel extends JPanel{
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(volvoImage, volvoPoint.x, volvoPoint.y, null); // see javadoc for more info on the parameters
-        g.drawImage(saabImage, saabPoint.x, saabPoint.y, null);
-        g.drawImage(scaniaImage, scaniaPoint.x, scaniaPoint.y, null);
+        for (int i = 0; i < vehicleImages.size(); i++) {
+            g.drawImage(vehicleImages.get(i), vehiclePositions.get(i).x, vehiclePositions.get(i).y, null);
+        }
     }
 }

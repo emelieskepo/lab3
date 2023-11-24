@@ -21,9 +21,6 @@ public class CarController {
 
     // The frame that represents this instance View of the MVC pattern
     CarView frame;
-    // A list of cars, modify if needed
-    //ArrayList<Car> cars = new ArrayList<>();
-    //ArrayList<Truck> trucks = new ArrayList<>();
     ArrayList<Vehicle> vehicles = new ArrayList<>();
 
     //methods:
@@ -35,12 +32,6 @@ public class CarController {
         cc.vehicles.add(new Volvo240()); //cc.vehicles.add(new Volvo240(0,0));
         cc.vehicles.add(new Saab95()); //cc.vehicles.add(new Saab95(0, 100));
         cc.vehicles.add(new Scania()); //cc.vehicles.add(new Scania(0, 200));
-
-        //Satt in Saab95, Scania och deras respektive bilder med 100 pixlars
-        //avstand i Y-led fran varandra (alla avbildas ursprungligen med X=0).
-        //Koppla turbo-knapparna till Saaben och flakknapparna till Scania.
-        //Koppla "starta och stoppa alla bilar"-knapparna till bagge.
-        //Aven dessa bilar ska forhindras att aka utanfor rutan.
 
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
@@ -54,7 +45,11 @@ public class CarController {
      * */
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            for (Vehicle vehicle : vehicles) {
+            int[] xCoordinates = new int[vehicles.size()];
+            int[] yCoordinates = new int[vehicles.size()];
+
+            for (int i = 0; i < vehicles.size(); i++) {
+                Vehicle vehicle = vehicles.get(i);
                 double initialSpeed = vehicle.getCurrentSpeed();
                 if ( hitWall(vehicle)){
                     vehicle.stopEngine();
@@ -64,9 +59,9 @@ public class CarController {
                     vehicle.setCurrentSpeed(initialSpeed);
                 }
                 vehicle.move();
-                int x = (int) Math.round(vehicle.getXPos());
-                int y = (int) Math.round(vehicle.getYPos());
-                frame.drawPanel.moveit(x, y);
+                xCoordinates[i] = (int) Math.round(vehicle.getXPos());
+                yCoordinates[i] = (int) Math.round(vehicle.getYPos());
+                frame.drawPanel.moveit(xCoordinates, yCoordinates);
                 // repaint() calls the paintComponent method of the panel
                 frame.drawPanel.repaint();
             }
@@ -96,15 +91,48 @@ public class CarController {
         double vehicleXPos = vehicle.getXPos();
         double vehicleYPos = vehicle.getYPos();
         return (vehicleXPos < 0 || vehicleXPos > screenWidth || vehicleYPos < 0 || vehicleYPos > screenHeight);
-       // return (car.getXPos() < 800 && car.getXPos() > 0 ||car.getYPos() <= 800 && car.getYPos() > 0);
     }
 
-    void turboOn(Saab95 saab){
-       saab.setTurboOn();
+    void turboOn(){
+        for (Vehicle vehicle : vehicles) {
+            if (vehicle instanceof Saab95) {
+                ((Saab95) vehicle).setTurboOn();
+            }
+        }
     }
 
-    void turboOff(Saab95 saab){
-        saab.setTurboOff();
+    void turboOff(){
+        for (Vehicle vehicle : vehicles) {
+            if (vehicle instanceof Saab95) {
+                ((Saab95) vehicle).setTurboOff();
+            }
+        }
+    }
+
+    void startAllCars(){
+        for (Vehicle vehicle : vehicles) {
+            vehicle.startEngine();
+        }
+    }
+
+    void stopAllCars(){
+        for (Vehicle vehicle : vehicles) {
+            vehicle.stopEngine();
+        }
+    }
+
+    void liftBed(){
+        for (Vehicle vehicle : vehicles) {
+            if (vehicle instanceof Truck)
+                ((Truck) vehicle).setIsLiftUp(false);
+        }
+    }
+
+    void lowerBed(){
+        for (Vehicle vehicle : vehicles) {
+            if (vehicle instanceof Truck)
+                ((Truck) vehicle).setIsLiftUp(true);
+        }
     }
 
 
