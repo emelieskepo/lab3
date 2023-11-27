@@ -124,14 +124,14 @@ public class CarController {
     void liftBed(){
         for (Vehicle vehicle : vehicles) {
             if (vehicle instanceof Truck)
-                ((Truck) vehicle).setIsLiftUp(false);
+                ((Truck) vehicle).setIsLiftUp(true);
         }
     }
 
     void lowerBed(){
         for (Vehicle vehicle : vehicles) {
             if (vehicle instanceof Truck)
-                ((Truck) vehicle).setIsLiftUp(true);
+                ((Truck) vehicle).setIsLiftUp(false);
         }
     }
 

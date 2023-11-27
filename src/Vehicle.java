@@ -112,7 +112,7 @@ public abstract class Vehicle implements Movable{
     }
 
     public void gas(double amount) {
-        if (amount >= 0 && amount <= 1) {
+        if (amount > 0 && amount <= 1 && this.currentSpeed >= 0.1) {
             incrementSpeed(amount);
         }
 
