@@ -17,9 +17,9 @@ public class CarTransporter extends Truck{
 
     public void lowerRamp() { //sänk rampen mot marken så att bil kan köra på
         if (!isMoving()) {
-            setIsLiftUp(false);
+            setIsLiftUp(true);
         } else {
-            setIsLiftUp(true); // om vi kör så måste rampen vara uppe
+            setIsLiftUp(false); // om vi kör så måste rampen vara uppe
         }
     }
 
