@@ -25,7 +25,7 @@ public abstract class Truck extends Vehicle{
 
     @Override
     public void gas(double amount) {
-        if (!isLiftUp && amount > 0 && amount <= 1) {
+        if (!isLiftUp && amount >= 0 && amount <= 1) {
             super.gas(amount);
         }
     }

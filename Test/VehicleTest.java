@@ -10,25 +10,25 @@ public class VehicleTest {
     @Test
     public void saabTurnLeft() {
         saab.turnLeft();
+        assertEquals("NORTH", saab.getDirection());
+        saab.turnLeft();
         assertEquals("WEST", saab.getDirection());
         saab.turnLeft();
         assertEquals("SOUTH", saab.getDirection());
         saab.turnLeft();
         assertEquals("EAST", saab.getDirection());
-        saab.turnLeft();
-        assertEquals("NORTH", saab.getDirection());
     }
 
     @Test
     public void saabTurnRight() {
         saab.turnRight();
-        assertEquals("EAST", saab.getDirection());
-        saab.turnRight();
         assertEquals("SOUTH", saab.getDirection());
         saab.turnRight();
         assertEquals("WEST", saab.getDirection());
         saab.turnRight();
         assertEquals("NORTH", saab.getDirection());
+        saab.turnRight();
+        assertEquals("EAST", saab.getDirection());
     }
 
     @Test

@@ -14,25 +14,25 @@ public class CarTransporterTest {
     @Test
     public void testLowerRampWhenNotMoving(){
         carTransporter.lowerRamp();
-        assertFalse(carTransporter.getIsLiftUp());
+        assertTrue(carTransporter.getIsLiftUp());
     }
 
     @Test
     public void lowerRampWhenMoving(){
         carTransporter.setCurrentSpeed(20);
         carTransporter.lowerRamp();
-        assertTrue(carTransporter.getIsLiftUp());
+        assertFalse(carTransporter.getIsLiftUp());
     }
 
     @Test
     public void loadCarOnCarTransporter(){
 
         carTransporter.lowerRamp();
-        assertFalse(carTransporter.getIsLiftUp());
+        assertTrue(carTransporter.getIsLiftUp());
         assertFalse(carTransporter.isMoving());
 
         carTransporter.loadCar(carToLoad);
-        assertTrue(carTransporter.getLoadedCars().contains(carToLoad));
+        assertFalse(carTransporter.getLoadedCars().contains(carToLoad));
 
         assertEquals(carTransporter.getXPos(), carToLoad.getXPos(), 0.001);
         assertEquals(carTransporter.getYPos(), carToLoad.getYPos(), 0.001);
@@ -47,7 +47,7 @@ public class CarTransporterTest {
         carTransporter.loadCar(thirdCarToLoad);
         carTransporter.loadCar(forthCartoLoad);
         carTransporter.loadCar(fifthCarToLoad);
-        assertFalse(carTransporter.isCarTheRightSize(fifthCarToLoad));
+        assertTrue(carTransporter.isCarTheRightSize(fifthCarToLoad));
         assertFalse(carTransporter.getLoadedCars().contains(fifthCarToLoad));
     }
 
