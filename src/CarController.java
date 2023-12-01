@@ -86,8 +86,8 @@ public class CarController {
     }
 
     boolean hitWall(Vehicle vehicle){
-        int screenWidth = 700;
-        int screenHeight = 500; //för gröna boxen
+        int screenWidth = WindowConfig.SCREEN_WIDTH - WindowConfig.VEHICLE_WIDTH;
+        int screenHeight = WindowConfig.SCREEN_HEIGHT; //för gröna boxen
         double vehicleXPos = vehicle.getXPos();
         double vehicleYPos = vehicle.getYPos();
         return (vehicleXPos < 0 || vehicleXPos > screenWidth || vehicleYPos < 0 || vehicleYPos > screenHeight);
@@ -134,9 +134,5 @@ public class CarController {
                 ((Truck) vehicle).setIsLiftUp(false);
         }
     }
-
-
-
-
 
 }

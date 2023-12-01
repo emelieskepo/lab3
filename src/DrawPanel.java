@@ -5,11 +5,12 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.util.ArrayList;
+// GLÖM INTE FIXA AVSTÅNDET MELLAN BILARNA
 // This panel represent the animated part of the view with the car images.
 
 public class DrawPanel extends JPanel{
 
-    // To keep track of a single cars position
+    // To keep track of a singel cars position
     public ArrayList<Point> vehiclePositions = new ArrayList<>();
     public ArrayList<BufferedImage> vehicleImages = new ArrayList<>();
 
