@@ -1,7 +1,11 @@
-Hashmap, vi vill koppla ihop listorna nedan:
+Gör en Hashmap för att koppla ihop listorna nedan:
 public ArrayList<Point> vehiclePositions = new ArrayList<>();
 public ArrayList<BufferedImage> vehicleImages = new ArrayList<>();
-Skapa VehicleControllerListener
-Flytta ut TimerListener
-Skapa SimulationListener
-Skapa Application
+
+Skapa ett interface VehicleControllerListener, låt CarController implementera interfacet och gör en VehicleControllerListener-instans i View
+
+Flytta ut TimerListener från CarController, och ta bort de attribut som ej behövs längre i CarController
+
+Skapa ett interface SimulationListener med metoden: void updateSimulation(int[] xCoordinates, int[] yCoordinates);
+
+Skapa en klass Application och lägg main-metoden i den, samt lägg till de attribut som behövs
