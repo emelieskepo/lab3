@@ -1,0 +1,7 @@
+Hashmap, vi vill koppla ihop listorna nedan:
+public ArrayList<Point> vehiclePositions = new ArrayList<>();
+public ArrayList<BufferedImage> vehicleImages = new ArrayList<>();
+Skapa VehicleControllerListener
+Flytta ut TimerListener
+Skapa SimulationListener
+Skapa Application
