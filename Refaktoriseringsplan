@@ -1,3 +1,7 @@
+Byt namn från CarController till VehicleController (då Controller ska kontrollera både Scania (truck) och Volvo och Saab (Car)
+
+Byt namn från CarView till View 
+
 Gör en Hashmap för att koppla ihop listorna nedan:
 public ArrayList<Point> vehiclePositions = new ArrayList<>();
 public ArrayList<BufferedImage> vehicleImages = new ArrayList<>();
